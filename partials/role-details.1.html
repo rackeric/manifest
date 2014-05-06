@@ -1,0 +1,227 @@
+<h3><small>ROLE</small><br>{{ role.name }}<br><small>manage your role</small></h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Add Server Stuffs - <i>module search</i></h3>
+            </div>
+            <div class="panel-body">
+            
+              Some stuff here.
+            
+              <hr>
+            
+                <form>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="New Section Name" ng-model="newModuleName" tooltip="A name or description of the task for the Ansible play">
+                    <span class="help-block">New Section Name</span>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" typeahead="module for module in saltModuleNames | filter:$viewValue" typeahead-on-select="setOptions()" ng-change="setOptions()" placeholder="Ansible Module Name" ng-model="newModuleAction">
+                    <span class="help-block">Ansible Module</span>
+                  </div>
+                    <font color="red">{{ inputErrorMsg }}</font>
+                    <div class="form-group" data-ng-repeat="choice in choices">
+                      <input type="text" ng-model="choice.name" name="" placeholder="Option name">
+                      <input type="text" ng-model="choice.value" name="" placeholder="Option value">
+                    </div>
+                    <br />
+                    <hr>
+                    <h4><u>Description</u></h4>
+                    <p class="bg-info">{{ selectedDescription }}</p>
+                    <hr>
+                    <h4><u>Options</u></h4>
+                    <table>
+                        <tr data-ng-repeat="(key, option) in options">
+                            <td>{{ option.paramater }}: </td><td><div class="form-group {{ getValidationState(option.required, option.value) }}"><input type="hidden" ng-model="option.paramater" value="{{ option.paramater }}"><input class="form-control input-sm" type="text" ng-model="option.value" name="" placeholder="{{ option.choices }}" tooltip="{{ option.comments }}"  tooltip-trigger="focus" tooltip-placement="right"></div></td>
+                        </tr>
+                    </table>
+                </form>
+                <hr>
+                <!-- <button class="btn btn-default" ng-show="showAddChoice(choice)" ng-click="addNewChoice()">Add another option</button> -->
+                <!-- <button class="btn btn-default" ng-show="showAddChoice(choice)" ng-click="removeChoice()">Remove option</button> -->
+              <div class="pull-right">
+                <font color="red">{{ inputErrorMsg }}</font>
+                <button class="btn btn-primary" type="submit" ng-click="addModule()">Add</button>
+                <button class="btn btn-warning" type="submit" ng-click="clearModule()">Clear</button>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Basic Stuffs</h3>
+            </div>
+            <div class="panel-body">
+                <!-- Single button -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                    System <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li ng-click="setModuleName('user')"><a href="">User Management</a></li>
+                    <li ng-click="setModuleName('hostname')"><a href="">Hostname Management</a></li>
+                    <li ng-click="setModuleName('service')"><a href="">Service Management</a></li>
+                    <li ng-click="setModuleName('filesystem')"><a href="">Filesystem Management</a></li>
+                    <li ng-click="setModuleName('command')"><a href="">Add Commands</a></li>
+                    <li ng-click="setModuleName('script')"><a href="">Run local script</a></li>
+                    <li ng-click="setModuleName('shell')"><a href="">Run local shell commands</a></li>
+                    <li ng-click="setModuleName('authorized_key')"><a href="">SSH Key Management</a></li>
+                  </ul>
+                </div>
+                <!-- Single button -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                    Packages <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li ng-click="setModuleName('yum')"><a href="">RHEL Packages</a></li>
+                    <li ng-click="setModuleName('apt')"><a href="">Debian Packages</a></li>
+                    <li ng-click="setModuleName('pip')"><a href="">Python Packages</a></li>
+                    <li ng-click="setModuleName('openbsd_pkg')"><a href="">OpenBSD Packages</a></li>
+                    <li ng-click="setModuleName('gem')"><a href="">Ruby gems</a></li>
+                  </ul>
+                </div>
+                <!-- Single button -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                    Files <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li ng-click="setModuleName('copy')"><a href="">Copy File</a></li>
+                    <li ng-click="setModuleName('file')"><a href="">Set File Attributes</a></li>
+                    <li ng-click="setModuleName('get_url')"><a href="">Download Remote File</a></li>
+                    <li ng-click="setModuleName('git')"><a href="">Deploy from Git</a></li>
+                    <li ng-click="setModuleName('unarchive')"><a href="">Copy Archive File and Unpack</a></li>
+                  </ul>
+                </div>
+                <!-- Single button -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                    Database <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li ng-click="setModuleName('mysql_user')"><a href="">MySQL User Management</a></li>
+                    <li ng-click="setModuleName('mysql_db')"><a href="">MySQL DB Management</a></li>
+                    <li ng-click="setModuleName('mysql_variables')"><a href="">MySQL Variable Management</a></li>
+                    <li ng-click="setModuleName('mysql_replication')"><a href="">MySQL Replication Management</a></li>
+                    <li class="divider"></li>
+                    <li ng-click="setModuleName('postgresql_user')"><a href="">Postgres User Management</a></li>
+                    <li ng-click="setModuleName('postgresql_db')"><a href="">Postgres DB Management</a></li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-sm" ng-click="setModuleName('user')">Add User</button>
+                <button class="btn btn-primary btn-sm" ng-click="ansibleTest()">Ansible Test</button>
+                <br />
+                <br />
+                <table>
+                  <tr>
+                    <td>Set Play Hosts: </td>
+                    <td><input type="text" placeholder="" ng-model="playHosts"></td>
+                  </tr>
+                  <tr>
+                    <td>Set Play User: </td><td><input type="text" placeholder="" ng-model="playUsername"></td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Server Resources -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">Your server resources
+        <small><div class="pull-right">
+          <font color="black"><input type="text" class="input-xs" ng-model="searchText" placeholder="filter anything..." /></font>
+        </div></small></div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover" id="modules" ng-show="modules">
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+                <th>Options</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat="(key, module) in modules | orderByPriority:order | filter:searchText">
+                <td>
+                    <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ module.name }}</a>
+                </td><td>
+                    {{ module.option }}
+                </td><td>
+                    <p ng-repeat="option in module.options">{{ option.paramater }}: {{ option.value }}</p>
+                </td><td>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeModule(module.$id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">SaltStack State Generator - <i>drag and drop to sort</i></h3>
+    </div>
+    <div class="panel-body">
+<pre class="prettyprint"><span id="modules" ng-show="modules" ng-repeat="(key, module) in modules | orderByPriority | filter:searchText"><span style="white-space: pre;">
+<a href="#" editable-text="module.name">{{ module.name }}</a>:
+  {{ module.option }}:  <span ng-repeat="(key, option) in module.options">
+    - {{ option.paramater }}: <a href="#" editable-text="option.value">{{ option.value }}</a></span></span>
+    </span>
+</pre>
+    </div> 
+</div>
+
+<!-- Ethans Practice Generator -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Ansible Play Generator - <i>drag and drop to sort</i></h3>
+    </div>
+    <div class="panel-body">
+<pre class="prettyprint">---
+- name: {{ role.name }}
+  hosts: <a href="#" editable-text="playHosts">{{ playHosts }}</a>
+  remote_user: <a href="#" editable-text="playUsername">{{ playUsername }}</a>
+  tasks:
+<!-- <p ui-sortable ng-model="modules" id="sortMe"> -->
+  <p ng-show="modules" ng-repeat="(key, module) in modules | orderByPriority | filter:searchText" id="module-{{ key }}"><span style="white-space: pre;">
+  - name: <a href="#" editable-text="module.name">{{ module.name }}</a> 
+    {{ module.option }}:<span ng-repeat="(key, option) in module.options"> {{ option.paramater }}=<a href="#" editable-text="option.value">{{ option.value }}</a></span></span>
+  </p>
+<!-- </p> -->
+</pre>
+    </div>
+</div>
+<!-- End of Ethans Practice Generator -->
+
+
+<!-- START: testing sortable bullshit -->
+
+<ul ui-sortable="sortableOptions" ng-model="modules" id="sortMe">
+  <li ng-repeat="(key, module) in modules" id="module_{{module.$id}}">{{ module.name }}</li>
+</ul>
+
+<ul ui-sortable="sortableOptions" id="sortMe">
+    <li id="module_-a5">something1</li>
+    <li id="module_-b23">something2</li>
+    <li id="module_-c234">something3</li>
+    <li id="module_-d345">something4</li>
+</ul>
+
+<!-- END: testing sortable bullshit -->
+
+<br />
+
+
+
+ <style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+</style>
+<script>

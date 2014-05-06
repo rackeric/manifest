@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h2>TESTING!!!<br></h2>
+</div>
+
+
+<input class="input" ng-model="host_list" placeholder="host_list">
+<input class="input" ng-model="module_name" placeholder="module_name">
+<input class="input" ng-model="module_args" placeholder="module_args">
+<input class="input" ng-model="pattern" placeholder="pattern">
+<input class="input" ng-model="remote_user" placeholder="remote_user">
+<input type="password" class="input" ng-model="remote_pass" placeholder="remote_pass">
+<input type="text" class="input" ng-model="private_key_file" placeholder="private_key_file">
+<button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(host_list, module_name, module_args, pattern, remote_user, remote_pass, private_key_file)">Run Command</button><button class="btn btn-xs btn-danger" ng-click="clear()">Clear Buffer</button>
+
+<br>
+<br>
+<u>Results from firebase:</u>
+<br><br>
+<div ng-model="external_data" ng-repeat="data in external_data | orderByPriority">
+    <div ng-model="data" ng-repeat="item in data || orderByPriority">
+        {{ item }}
+    </div>
+    <hr>
+</div>
