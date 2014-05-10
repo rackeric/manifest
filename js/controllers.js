@@ -560,19 +560,32 @@ angular.module('myApp.controllers', [])
           $scope.response = null;
           $scope.job_id = null;
           
-          var hostToUse = new Firebase('https://deploynebula.firebaseio.com/users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory');
+          var inventory = new Firebase('https://deploynebula.firebaseio.com/users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory');
           var hostName = null;
           var hostUser = null;
           var hostPass = null;
           
-          hostToUse.once('value', function(dataSnapshot) {
-            var mySnapshot = dataSnapshot;
-            
-            hostName = mySnapshot.child('ansible_ssh_host').val();
-            hostUser = mySnapshot.child('ansible_ssh_user').val();
-            hostPass = mySnapshot.child('ansible_ssh_pass').val();
+          // start new
+          //$scope.ansibleModules = new Firebase('https://deploynebula.firebaseio.com/moduleslist/ansible');
+          //$scope.ansibleModules = serviceAnsibleModuleslist;
+          
+          var hostList = []
 
+          inventory.once('value', function(dataSnapshot) {
+            $scope.moduleSnapshot = dataSnapshot;
+
+            $scope.moduleSnapshot.forEach(function(childSnapshot) {
+              var key = childSnapshot.name();
+              var childHost = childSnapshot.child('ansible_ssh_host').val();
+              console.log("childHost: " + childHost);
+              hostUser = childSnapshot.child('ansible_ssh_user').val();
+              hostPass = childSnapshot.child('ansible_ssh_pass').val();
+              hostList.push(childHost);
+              //hostList = hostList + childHost + ', ';
+            })
           });
+        
+          console.log("hostList: " + hostList);
           
           $scope.external_data.$add({ user_id: $scope.auth.user.uid,
                                       status: "QUEUED",
@@ -581,7 +594,7 @@ angular.module('myApp.controllers', [])
                                       pattern: "*",
                                       remote_user: hostUser,
                                       remote_pass: hostPass,
-                                      host_list: hostName }).then(function(ref) {
+                                      host_list: hostList }).then(function(ref) {
               // the key of the new job = job_id
               var stripped_uid = $scope.auth.user.uid.split(':');
               $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_jeneric/' + stripped_uid[1] + '/' + ref.name();
@@ -610,12 +623,16 @@ angular.module('myApp.controllers', [])
           var hostUser = null;
           var hostPass = null;
           
+          //new
+          var dictHosts = []
+          
           hostToUse.once('value', function(dataSnapshot) {
             var mySnapshot = dataSnapshot;
             
             hostName = mySnapshot.child('ansible_ssh_host').val();
             hostUser = mySnapshot.child('ansible_ssh_user').val();
             hostPass = mySnapshot.child('ansible_ssh_pass').val();
+            dictHosts.push(hostName);
 
           });
           
@@ -626,7 +643,8 @@ angular.module('myApp.controllers', [])
                                       pattern: "*",
                                       remote_user: hostUser,
                                       remote_pass: hostPass,
-                                      host_list: hostName }).then(function(ref) {
+                                      //host_list: hostName
+                                      host_list: dictHosts }).then(function(ref) {
               // the key of the new job = job_id
               var stripped_uid = $scope.auth.user.uid.split(':');
               $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_jeneric/' + stripped_uid[1] + '/' + ref.name();
