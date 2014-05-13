@@ -555,7 +555,7 @@ angular.module('myApp.controllers', [])
 	  }
 	  
 	  // button: ping host and command... has been expanded
-	  $scope.ansibleJenericInventory_run = function(project_key, module, args) {
+	  $scope.ansibleJenericInventory_run = function(project_key, pattern, module, args) {
 	      $scope.code = null;
           $scope.response = null;
           $scope.job_id = null;
@@ -592,7 +592,7 @@ angular.module('myApp.controllers', [])
                                       status: "QUEUED",
                                       module_name: module,
                                       module_args: args,
-                                      pattern: "*",
+                                      pattern: pattern,
                                       remote_user: hostUser,
                                       remote_pass: hostPass,
                                       host_list: hostList }).then(function(ref) {

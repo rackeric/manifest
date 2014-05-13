@@ -137,7 +137,16 @@
             <div class="panel-heading">
               <div class="panel-title">
                 Inventory
-                <small><button class="btn btn-xs btn-warning pull-right" ng-click="ansibleJenericInventory_run(projectID, inventoryModuleToRun, inventoryModuleArgs)">Run</button><font color="black"><input class="input-xs pull-right" ng-model="inventoryModuleArgs" placeholder="args"><input class="input-xs pull-right" ng-model="inventoryModuleToRun" placeholder="module"></font></small>
+                <div class="pull-right">
+                    <small>
+                        <font color="black">
+                        <input class="input-xs" ng-model="inventoryPattern" placeholder="pattern, * for all">
+                        <input class="input-xs" ng-model="inventoryModuleToRun" placeholder="module">
+                        <input class="input-xs" ng-model="inventoryModuleArgs" placeholder="args">
+                        <button class="btn btn-xs btn-warning" ng-click="ansibleJenericInventory_run(projectID, inventoryPattern, inventoryModuleToRun, inventoryModuleArgs)">Run</button>
+                        </font>
+                    </small>
+                </div>
               </div>
             </div>
             <div class="panel-body">
