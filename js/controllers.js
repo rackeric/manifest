@@ -576,7 +576,7 @@ angular.module('myApp.controllers', [])
 
             $scope.moduleSnapshot.forEach(function(childSnapshot) {
               var key = childSnapshot.name();
-              var childHost = childSnapshot.child('ansible_ssh_host').val();
+              var childHost = childSnapshot.child('name').val();
               console.log("childHost: " + childHost);
               hostUser = childSnapshot.child('ansible_ssh_user').val();
               hostPass = childSnapshot.child('ansible_ssh_pass').val();
@@ -588,6 +588,7 @@ angular.module('myApp.controllers', [])
           console.log("hostList: " + hostList);
           
           $scope.external_data.$add({ user_id: $scope.auth.user.uid,
+                                      project_id: $scope.projectID,
                                       status: "QUEUED",
                                       module_name: module,
                                       module_args: args,
@@ -628,15 +629,16 @@ angular.module('myApp.controllers', [])
           
           hostToUse.once('value', function(dataSnapshot) {
             var mySnapshot = dataSnapshot;
-            
+            name = mySnapshot.child('name').val();
             hostName = mySnapshot.child('ansible_ssh_host').val();
             hostUser = mySnapshot.child('ansible_ssh_user').val();
             hostPass = mySnapshot.child('ansible_ssh_pass').val();
-            dictHosts.push(hostName);
+            dictHosts.push(name);
 
           });
           
           $scope.external_data.$add({ user_id: $scope.auth.user.uid,
+                                      project_id: $scope.projectID,
                                       status: "QUEUED",
                                       module_name: module,
                                       module_args: args,
