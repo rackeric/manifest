@@ -33,7 +33,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-      <div class="panel-title">Ansible Roles / Plays
+      <div class="panel-title">Playbooks
       <small><font color="black"><input class="input-xs pull-right" ng-model="searchText" placeholder="Search" /></font></small></div>
     </div>
     <div class="panel-body">
@@ -42,6 +42,9 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Actions</th>
+                <th>Destiny Actions</th>
+                <th>Last Run</th>
+                <th>Returns</th>
             </tr>
             <tr ng-repeat="(key, role) in roles | orderByPriority | filter:searchText">
                 <td>
@@ -56,6 +59,18 @@
                     <button popover="Click role name at top of next page to rename." popover-title="Rename Project" class="btn btn-warning btn-xs">Rename</button>
                     <button type="button" class="btn btn-danger btn-xs" ng-click="removeRole(role.$id)">Delete</button>
                 </td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="ansible_playbook(role.$id)">Run Playbook</button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="clear_playbook_returns(role.$id)">Clear Returns</button>
+                </td>
+                <td>
+                    {{ role.status }}
+                </td>
+                <td>
+                    <ul ng-repeat="return in role.returns">
+                        <li>{{ return }}</li>
+                    </ul>
+                </td>
             </tr>
         </table>
     </div>
@@ -65,59 +80,63 @@
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Add Host</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-6">
-                      <div class="col-md-6">
+                  <div class="col-sm-6">
+                      <div class="col-sm-6">
                         <input type="text" class="form-control" ng-model="newHostName">
                         <span class="help-block">New HostName / IP Address</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" ng-model="ansible_group">
+                        <span class="help-block">Group</span>
                       </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-sm-12">
                       <div><!-- <div ng-model="inventoryOptions" ng-repeat="option in inventoryOptions | orderByPriority"> -->
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <!-- <input type="hidden" ng-model="option.name" value="{{ option.name }}"> -->
                           <!-- <input class="form-control" type="text" ng-model="option.value" tooltip="{{ option.description }}" tooltip-trigger="focus" tooltip-placement="above"> -->
                           <!-- <span class="help-block">{{ option.name }}</span> -->
                           <input class="form-control" type="text" ng-model="ansible_ssh_host">
                           <span class="help-block">ansible_ssh_host</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_port">
                           <span class="help-block">ansible_ssh_port</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_user">
                           <span class="help-block">ansible_ssh_user</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="password" ng-model="ansible_ssh_pass">
                           <span class="help-block">ansible_ssh_pass</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="password" ng-model="ansible_sudo_pass">
                           <span class="help-block">ansible_sudo_pass</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_connection">
                           <span class="help-block">ansible_connection</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_private_key_file">
                           <span class="help-block">ansible_ssh_private_key_file</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_python_interpreter">
                           <span class="help-block">ansible_python_interpreter</span>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-sm-3 form-group">
                           <input class="form-control" type="text" ng-model="ansible_interpreter">
                           <span class="help-block">ansible\_\*\_interpreter</span>
                         </div>
@@ -132,7 +151,7 @@
     </div>
 </div>
 <div class="row">
-     <div class="col-md-12">
+     <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
               <div class="panel-title">
@@ -153,7 +172,9 @@
                 <table class="table" ng-model="inventorylist">
                     <tr>
                         <th>Name</th>
-                        <th>Options</th>
+                        <th>Group</th>
+                        <th>Host</th>
+                        <th>User</th>
                         <th>Actions</th>
                     </tr>
                     <tr ng-repeat="(key, item) in inventory | orderByPriority">
@@ -161,7 +182,13 @@
                             {{ item.name }}
                         </td>
                         <td>
-                            {{ item.ansible_ssh_host }} {{ item.ansible_ssh_user }}
+                            {{ item.group }}
+                        </td>
+                        <td>
+                            {{ item.ansible_ssh_host }}
+                        </td>
+                        <td>
+                            {{ item.ansible_ssh_user }}
                         </td>
                         <td>
                             <input class="input" ng-model="commandToRun" placeholder="command"><button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
@@ -177,7 +204,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Tasks<button class="btn btn-xs btn-danger pull-right" ng-click="clearTasks()">Clear Buffer</button></h3>
@@ -198,7 +225,7 @@
                         </td>
                         <td>
                             <div ng-model="item.returns" ng-repeat="return in item.returns | orderByPriority">
-                                {{ return }}
+                                {{ return | json }}
                             </div>
                         </td>
                     </tr>

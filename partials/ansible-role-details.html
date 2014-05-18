@@ -344,7 +344,7 @@
                         <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="(key, module) in role.modules | orderByPriority | orderBy:'order' | filter:searchText">
+                    <tr ng-repeat="module in role.modules | orderByPriority | orderBy:'order' | filter:searchText">
                         <td>
                             <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ module.name }}</a>
                         </td><td>
