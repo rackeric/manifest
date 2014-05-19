@@ -247,15 +247,15 @@
               <h3 class="panel-title">Play Variables</h3>
             </div>
             <div class="panel-body">
-                <table class="table table-hover" ng-show="role.variables">
+                <table class="table table-hover" ng-show="variables">
                     <tr>
                         <th>Name</th>
                         <th>Value</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="var in role.variables | orderByPriority">
+                    <tr ng-repeat="var in variables | orderByPriority">
                         <td>
-                            <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ var.name }}</a>
+                            <a href="#/projects/{{ projectID }}/roles/{{ var.$id }}" ng-model="var.$priority">{{ var.name }}</a>
                         </td><td>
                             {{ var.value }}
                         </td><td>
@@ -273,14 +273,14 @@
               <h3 class="panel-title">Play Handlers</h3>
             </div>
             <div class="panel-body">
-                <table class="table table-hover" ng-show="role.handlers">
+                <table class="table table-hover" ng-show="handlers">
                     <tr>
                         <th>Name</th>
                         <th>Service</th>
                         <th>State</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="handler in role.handlers | orderByPriority">
+                    <tr ng-repeat="handler in handlers | orderByPriority">
                         <td>
                             <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ handler.name }}</a>
                         </td><td>
@@ -302,12 +302,12 @@
               <h3 class="panel-title">Play Includes</h3>
             </div>
             <div class="panel-body">
-                <table class="table table-hover" ng-show="role.includes">
+                <table class="table table-hover" ng-show="includes">
                     <tr>
                         <th>Name</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="include in role.includes | orderByPriority">
+                    <tr ng-repeat="include in includes | orderByPriority">
                         <td>
                             <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ include.name }}</a>
                         </td><td>
@@ -335,7 +335,7 @@
                 </div></small></div>
             </div>
             <div class="panel-body">
-                <table class="table table-hover" id="modules" ng-show="role.modules">
+                <table class="table table-hover" id="modules" ng-show="modules">
                     <tr>
                         <th>Name</th>
                         <th>Action</th>
@@ -344,7 +344,7 @@
                         <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="module in role.modules | orderByPriority | orderBy:'order' | filter:searchText">
+                    <tr ng-repeat="module in modules | orderByPriority | orderBy:'order' | filter:searchText">
                         <td>
                             <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ module.name }}</a>
                         </td><td>
@@ -373,7 +373,7 @@
         <h3 class="panel-title">Ansible Play Generator - <i>drag and drop to sort</i></h3>
     </div>
     <div class="panel-body">
-<pre class="brush: yaml">---
+<pre class="brush: yaml;">---
 - name: {{ role.name }}
   hosts: <a href="#" editable-text="role.playHosts">{{ role.playHosts }}</a>
   remote_user: <a href="#" editable-text="role.playUsername">{{ role.playUsername }}</a>
@@ -418,7 +418,27 @@
 
 <br />
 
+---+++
 
+<h1>Hello SyntaxHighlighter</h1>
+<pre class="brush: yaml">
+---
+- name: something
+  hosts: webservers
+
+  tasks:
+
+    - name: something else
+      command: name=me args=you
+
+    - name: something else
+      command: name=me args=you
+
+    - name: something else
+      command: name=me args=you
+</pre>
+
+---+++
 
  <style>
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }

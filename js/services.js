@@ -51,28 +51,35 @@
       
       .service('serviceRoleModules', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID, roleID) {
-              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/modules");
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/modules/");
+              return $firebase(ref);
+          }
+      }])
+      
+      .service('serviceRoleVariable', ["$rootScope", "$firebase", function($rootScope, $firebase) {
+          return function(projectID, roleID, varID) {
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/variables/" + varID);
               return $firebase(ref);
           }
       }])
       
       .service('serviceRoleVariables', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID, roleID) {
-              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/variables");
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/variables/");
               return $firebase(ref);
           }
       }])
       
       .service('serviceRoleHandlers', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID, roleID) {
-              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/handlers");
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/handlers/");
               return $firebase(ref);
           }
       }])
       
       .service('serviceRoleIncludes', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID, roleID) {
-              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/includes");
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/includes/");
               return $firebase(ref);
           }
       }])

@@ -662,8 +662,8 @@ angular.module('myApp.controllers', [])
 	//
 	//
 	//
-  .controller('AnsibleRoleDetailsCtrl', ['$scope', '$http', '$routeParams', 'syncData', 'serviceAnsibleModuleslist', 'serviceRole', 'serviceRoleModules', 'serviceRoleVariables', 'serviceRoleHandlers', 'serviceRoleIncludes', 
-    function($scope, $http, $routeParams, syncData, serviceAnsibleModuleslist, serviceRole, serviceRoleModules, serviceRoleVariables, serviceRoleHandlers, serviceRoleIncludes) {
+  .controller('AnsibleRoleDetailsCtrl', ['$scope', '$http', '$routeParams', 'syncData', 'serviceAnsibleModuleslist', 'serviceRole', 'serviceRoleModules', 'serviceRoleVariables', 'serviceRoleVariable', 'serviceRoleHandlers', 'serviceRoleIncludes', 
+    function($scope, $http, $routeParams, syncData, serviceAnsibleModuleslist, serviceRole, serviceRoleModules, serviceRoleVariables, serviceRoleVariable, serviceRoleHandlers, serviceRoleIncludes) {
       
 	  // vars from the URL
       $scope.roleID = $routeParams.roleId;
@@ -762,6 +762,7 @@ angular.module('myApp.controllers', [])
       $scope.ansibleModules = serviceAnsibleModuleslist;
       
       serviceRole($scope.projectID, $scope.roleID).$bind($scope, "role");
+      //$scope.role = serviceRole($scope.projectID, $scope.roleID);
       
       //serviceRoleModules($scope.projectID, $scope.roleID).$bind($scope, "modules");
       $scope.modules = serviceRoleModules($scope.projectID, $scope.roleID);
@@ -975,6 +976,7 @@ angular.module('myApp.controllers', [])
 	  
 	  // remove variable from playbook
 	  $scope.removeVariable = function(key) {
+	      //var tmpVar = serviceRoleVariable($scope.projectID, $scope.roleID, key)
 	      var deleteVariable = confirm('Are you sure?');
 	      if (deleteVariable) {
 	          $scope.variables.$remove(key);

@@ -68,7 +68,9 @@
                 </td>
                 <td>
                     <ul ng-repeat="return in role.returns">
-                        <li>{{ return }}</li>
+                      <li ng-repeat="(key, value) in return">
+                        {{ key }}: {{ value }}
+                      </li>
                     </ul>
                 </td>
             </tr>
@@ -212,21 +214,39 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        <th>Command</th>
+                        <th>Pattern</th>
+                        <th>Module</th>
+                        <th>Module Args</th>
                         <th>Status</th>
                         <th>Returns</th>
                     </tr>
                     <tr ng-model="external_data" ng-repeat="item in external_data | orderByPriority">
                         <td>
+                            {{ item.pattern }}
+                        </td>
+                        <td>
                             {{ item.module_name }}
+                        </td>
+                        <td>
+                            {{ item.module_args }}
                         </td>
                         <td>
                             {{ item.status }} 
                         </td>
                         <td>
-                            <div ng-model="item.returns" ng-repeat="return in item.returns | orderByPriority">
-                                {{ return | json }}
-                            </div>
+                            <ul ng-repeat="return in item.returns">
+                            
+                              <li ng-repeat="(key, value) in return">
+                                {{ key }}
+                                <ul ng-repeat="(key, inner) in value">
+                                    <li>{{ key }}</li>
+                                    <ul ng-repeat="(key, inner2) in inner">
+                                        <li>{{ key }}: {{ inner2 }}</li>
+                                    </ul>
+                                </ul>
+                              </li>
+                              
+                            </ul>
                         </td>
                     </tr>
                 </table>
