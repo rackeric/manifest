@@ -4,6 +4,12 @@
 
 angular.module('myApp.controllers', [])
 
+  .controller('Test123Ctrl', ['$scope', 'syncData', '$http', function($scope, syncData, $http) {
+      
+    
+      
+  }])
+
   .controller('TestingCtrl', ['$scope', 'syncData', '$http', function($scope, syncData, $http) {
       
       $scope.external_data = syncData('external_data');

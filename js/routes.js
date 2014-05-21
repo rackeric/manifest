@@ -5,6 +5,12 @@ angular.module('myApp.routes', ['ngRoute'])
    // configure views; the authRequired parameter is used for specifying pages
    // which should only be available while logged in
    .config(['$routeProvider', function($routeProvider) {
+      
+      $routeProvider.when('/test123', {
+         templateUrl: 'partials/test123.html',
+         controller: 'Test123Ctrl'
+      });
+      
       $routeProvider.when('/home', {
          templateUrl: 'partials/home.html',
          controller: 'HomeCtrl'

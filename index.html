@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Manifest [dev]</title>
-  <link rel="stylesheet" href="css/app.css">
+  
+  <!-- <link rel="stylesheet" href="css/app.css"> -->
   
   <!-- JQuery UI stuff, used for autocompletion -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -12,16 +13,23 @@
   
   <!-- custom bootstrap css -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magic-bootstrap16.css">
+  <!--     <link rel="stylesheet" href="css/magic-bootstrap16.css">     -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  
   <!-- <script src="js/bootstrap.js"></script> -->
   
+  	<script type="text/javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" src="js/shBrushYaml.js"></script>
+	<link href="css/shCore.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+	<link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
 
 </head>
 <body ng-cloak-auth class="hide">
 
     <!-- Start Nav Bar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -63,7 +71,7 @@
 
 
   <div class="container-fluid">
-      <nav class="navbar navbar-default navbar-fixed-bottom" ng-controller="foot" role="navigation">
+      <nav class="navbar navbar-inverse navbar-fixed-bottom" ng-controller="foot" role="navigation">
         
         <div class="row-fluid">
             <div class="col-md-12">
@@ -115,6 +123,9 @@
   <script src="js/ui-bootstrap-tpls.js"></script>
 
   <!-- Pretty Code Print stuff -->
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=yaml" defer="defer"></script>
+  <link rel="stylesheet" href="css/prettify.css">
+  <script src="js/prettify.js"></script>
   <!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=default&lang=yaml"></script> -->
 
   <!-- Edit in place stuff -->
@@ -146,8 +157,13 @@
   </style>
   
 
-  
-  
-
+  <!-- for prettify -->
+  <script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()
+    })
+  }(window.jQuery)
+</script>
 </body>
 </html>
