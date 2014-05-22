@@ -415,6 +415,11 @@ angular.module('myApp.controllers', [])
 	  //serviceRoles($scope.projectID).$bind($scope, "roles");
 	  $scope.roles = serviceRoles($scope.projectID);
 	  
+	  // stuffs for rackspace cloud section, holds username and API key
+	  syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/rax_username').$bind($scope, 'rax_username');
+      syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/rax_apikey').$bind($scope, 'rax_apikey');
+      
+	  
 	  // external_data == tasks
 	  $scope.external_data = syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/external_data');
 
@@ -586,6 +591,40 @@ angular.module('myApp.controllers', [])
               });
           });
           $scope.commandToRun = null;
+	  }
+	  
+	  // button: RAX create server
+	  $scope.rax_createServer = function() {
+	      
+	      $scope.external_data.$add({
+	          user_id: $scope.auth.user.uid,
+	          project_id: $scope.projectID,
+	          status: "QUEUED",
+	          group: $scope.ansible_group,
+	          region: $scope.region,
+	          rax_username: $scope.rax_username,
+	          rax_apikey: $scope.rax_apikey,
+	          flavor: $scope.rax_flavor,
+	          image: $scope.rax_image,
+	          servername: $scope.newServerName
+	      }).then(function(ref) {
+              // the key of the new job = job_id
+              var stripped_uid = $scope.auth.user.uid.split(':');
+              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/rax_create_server/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
+          
+              $http({method: 'GET', url: $scope.myURL}).
+                success(function(data, status) {
+                  $scope.status = status;
+                  $scope.data = data;
+                }).
+                error(function(data, status) {
+                  $scope.data = data || "Request failed";
+                  $scope.status = status;
+              });
+	        });
+	      
+	      
+	      
 	  }
 	  
 	  // button: ping host and command... has been expanded

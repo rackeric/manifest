@@ -68,11 +68,14 @@
                 </td>
                 <td>
                     <ul ng-repeat="return in role.returns">
-                      <li ng-repeat="(key, value) in return">
+                      <li ng-repeat="(key, value) in return.stats">
                         {{ key }}: {{ value }}
                       </li>
+                      <br>
+                      <pre>{{ return.stdout }}</pre>
                     </ul>
                 </td>
+                
             </tr>
         </table>
     </div>
@@ -152,6 +155,63 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Rackspace Cloud
+                <div class="pull-right">
+                    <small>
+                        <font color="black">
+                        <input class="input-xs" ng-model="rax_username" placeholder="Username">
+                        <input class="input-xs" ng-model="rax_apikey" placeholder="API Key">
+                        </font>
+                    </small>
+                </div>    
+              </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" ng-model="newServerName">
+                        <span class="help-block">New Server Name</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" ng-model="region">
+                        <span class="help-block">Region</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" ng-model="ansible_group">
+                        <span class="help-block">Group</span>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                      <div>
+                        <div class="col-sm-3 form-group">
+                          <input class="form-control" type="text" ng-model="rax_flavor">
+                          <span class="help-block">Flavor ID</span>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                          <input class="form-control" type="text" ng-model="rax_image">
+                          <span class="help-block">Image UUID</span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn" type="submit" ng-click="rax_createServer()">Create Server</button>
+                        </div>
+                      </div><!-- </div> -->
+                      
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
      <div class="col-sm-12">
         <div class="panel panel-primary">
@@ -193,7 +253,7 @@
                             {{ item.ansible_ssh_user }}
                         </td>
                         <td>
-                            <input class="input" ng-model="commandToRun" placeholder="command"><button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
+                            <input class="input sm" ng-model="commandToRun" placeholder="command"> <button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
                             <button class="btn btn-xs btn-info" ng-click="ansibleJeneric(item.$id, 'ping', '')">Ping</button>
                             <button class="btn btn-xs btn-danger" ng-click="removeHost(item.$id)">Delete</button>
                         </td>
@@ -209,7 +269,7 @@
     <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Tasks<button class="btn btn-xs btn-danger pull-right" ng-click="clearTasks()">Clear Buffer</button></h3>
+                <h3 class="panel-title">Jobs<button class="btn btn-xs btn-danger pull-right" ng-click="clearTasks()">Clear Buffer</button></h3>
             </div>
             <div class="panel-body">
                 <table class="table">
@@ -241,7 +301,7 @@
                                 <ul ng-repeat="(key, inner) in value">
                                     <li>{{ key }}</li>
                                     <ul ng-repeat="(key, inner2) in inner">
-                                        <li>{{ key }}: {{ inner2 }}</li>
+                                        <li>{{ key }}: <pre>{{ inner2 }}</pre></li>
                                     </ul>
                                 </ul>
                               </li>
