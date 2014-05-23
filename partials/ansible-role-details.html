@@ -1,3 +1,18 @@
+<!-- Include required JS files -->
+<script type="text/javascript" src="../js/shCore.js"></script>
+ 
+<!--
+    At least one brush, here we choose JS. You need to include a brush for every
+    language you want to highlight
+-->
+<script type="text/javascript" src="../js/shBrushJScript.js"></script>
+<script type="text/javascript" src="../js/shBrushYaml.js"></script>
+ 
+<!-- Include *at least* the core style and default theme -->
+<link href="../css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+
 <div class="page-header"><h2><a href="#" editable-text="role.name">{{ role.name }}</a><br><small>{{ role.description }}</small></h2></div>
 
 <div class="row">
@@ -373,8 +388,8 @@
         <h3 class="panel-title">Ansible Play Generator - <i>drag and drop to sort</i></h3>
     </div>
     <div class="panel-body">
-<?prettify lang=yaml linenums=true?>
-<pre class="prettyprint">---
+
+<pre class="brush: yaml">---
 - name: {{ role.name }}
   hosts: <a href="#" editable-text="role.playHosts">{{ role.playHosts }}</a>
   remote_user: <a href="#" editable-text="role.playUsername">{{ role.playUsername }}</a>
@@ -419,9 +434,9 @@
 
 <br />
 
----+++
 
-<h1>Hello SyntaxHighlighter</h1>
+
+
 <pre class="brush: yaml">
 ---
 - name: something
@@ -439,11 +454,16 @@
       command: name=me args=you
 </pre>
 
----+++
 
- <style>
-#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
-html>body #sortable li { height: 1.5em; line-height: 1.2em; }
-.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+
+<style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
 </style>
+
+<!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
+<script type="text/javascript">
+     SyntaxHighlighter.all()
+</script>

@@ -16,6 +16,7 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
              * @returns {*}
              */
             login: function(email, pass, callback) {
+               
                assertAuth();
                auth.$login('password', {
                   email: email,

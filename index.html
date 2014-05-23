@@ -18,12 +18,12 @@
   
   <!-- <script src="js/bootstrap.js"></script> -->
   
-  	<script type="text/javascript" src="js/shCore.js"></script>
-	<script type="text/javascript" src="js/shBrushYaml.js"></script>
-	<link href="css/shCore.css" rel="stylesheet" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
-	<link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript">SyntaxHighlighter.all();</script>
+  
+<style>div.syntaxhighlighter .container:before,div.syntaxhighlighter .container:after {
+    content:none;
+}</style>  
+  
+
 
 </head>
 <body ng-cloak-auth class="hide">
@@ -122,12 +122,7 @@
   <script src="js/ui-bootstrap.js"></script>
   <script src="js/ui-bootstrap-tpls.js"></script>
 
-  <!-- Pretty Code Print stuff -->
-  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=yaml" defer="defer"></script>
-  <link rel="stylesheet" href="css/prettify.css">
-  <script src="js/prettify.js"></script>
-  <!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=default&lang=yaml"></script> -->
-
+  
   <!-- Edit in place stuff -->
   <link href="css/xeditable.css" rel="stylesheet">
   <script src="js/xeditable.min.js"></script>
@@ -139,16 +134,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
   <script type="text/javascript" src="js/sortable.js"></script>
   
-  
-  
-  <!-- Ansible node js thing 
-  <script src="js/require.js"></script>
-  <script src="js/node_modules/shelljs/global.js"></script>
-  <script src="js/node_modules/underscore/underscore.js"></script>
-  <script src="js/node_modules/util/util.js"></script>
-  <script src="js/node_modules/utils/utils.js"></script>
-  <script src="js/node_modules/q/q.js"></script>
-  <script src="js/ansible.js"></script> -->
+  <link href="css/app.css" rel="stylesheet">
 
   <!-- style to lower page due to navbar height -->
   <style>
@@ -157,13 +143,6 @@
   </style>
   
 
-  <!-- for prettify -->
-  <script>
-  !function ($) {
-    $(function(){
-      window.prettyPrint && prettyPrint()
-    })
-  }(window.jQuery)
-</script>
+  
 </body>
 </html>

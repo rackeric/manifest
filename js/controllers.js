@@ -1527,8 +1527,21 @@ angular.module('myApp.controllers', [])
     syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
 
     $scope.logout = function() {
+      
 	  loginService.logout();
+	  
     };
+    
+    
+    $scope.$on('angularFireAuth:login', function() { 
+      if ($scope.disassociateUserData) { 
+          $scope.disassociateUserData();
+      } 
+      angularFire(new Firebase(FBURL+'/users/'+$scope.auth.id), $scope, 'user').then(function (disassociate) { 
+          $scope.disassociateUserData = disassociate; 
+      }); 
+    });
+    
 
     $scope.oldpass = null;
     $scope.newpass = null;
