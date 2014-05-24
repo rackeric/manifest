@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
                                                         private_key_file: private_key_file }).then(function(ref) {
               // the key of the new job = job_id
               
-              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_jeneric_testing/' + ref.name();
+              $scope.myURL = $rootScope.DestinyURL + '/ansible_jeneric_testing/' + ref.name();
           
               $http({method: 'GET', url: $scope.myURL}).
                 success(function(data, status) {
@@ -91,7 +91,7 @@ angular.module('myApp.controllers', [])
           $scope.code = null;
           $scope.response = null;
         
-          $http({method: 'GET', url: 'http://destiny.cloudmanifest.com:8000/ansible_test1/'}).
+          $http({method: 'GET', url: $rootScope.DestinyURL + '/ansible_test1/'}).
             success(function(data, status) {
               $scope.status = status;
               $scope.data = data;
@@ -106,7 +106,7 @@ angular.module('myApp.controllers', [])
           $scope.code = null;
           $scope.response = null;
         
-          $http({method: 'GET', url: 'http://destiny.cloudmanifest.com:8000/ansible_test2/'}).
+          $http({method: 'GET', url: $rootScope.DestinyURL + '/ansible_test2/'}).
             success(function(data, status) {
               $scope.status = status;
               $scope.data = data;
@@ -125,7 +125,7 @@ angular.module('myApp.controllers', [])
           $scope.external_data.$add({ status: "QUEUED", host: $scope.host_to_run_on, command: $scope.command_to_run }).then(function(ref) {
               // the key of the new job = job_id
               
-              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_command_run/' + ref.name();
+              $scope.myURL = $rootScope.DestinyURL + '/ansible_command_run/' + ref.name();
           
               $http({method: 'GET', url: $scope.myURL}).
                 success(function(data, status) {
@@ -393,7 +393,7 @@ angular.module('myApp.controllers', [])
   //
   //  START Ansible CONTROLLERS
   //
-  .controller('AnsibleProjectDetailsCtrl', ['$scope', '$http', '$routeParams', 'syncData', 'serviceProject', 'serviceRoles', 'serviceRole', 'serviceInventoryHost', function($scope, $http, $routeParams, syncData, serviceProject, serviceRoles, serviceRole, serviceInventoryHost) {
+  .controller('AnsibleProjectDetailsCtrl', ['$scope', '$rootScope', '$http', '$routeParams', 'syncData', 'serviceProject', 'serviceRoles', 'serviceRole', 'serviceInventoryHost', function($scope, $rootScope, $http, $routeParams, syncData, serviceProject, serviceRoles, serviceRole, serviceInventoryHost) {
 	  // set projectID from URL
       $scope.projectID = $routeParams.projectId;
 
@@ -519,7 +519,7 @@ angular.module('myApp.controllers', [])
 	      
 	      // send ansible playbook request to API
 	      var stripped_uid = $scope.auth.user.uid.split(':');
-          $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_playbook/' + stripped_uid[1] + '/' + $scope.projectID + '/' + playbook_key;
+          $scope.myURL = $rootScope.DestinyURL + '/ansible_playbook/' + stripped_uid[1] + '/' + $scope.projectID + '/' + playbook_key;
       
           $http({method: 'GET', url: $scope.myURL}).
             success(function(data, status) {
@@ -578,7 +578,7 @@ angular.module('myApp.controllers', [])
                                       host_list: hostList }).then(function(ref) {
               // the key of the new job = job_id
               var stripped_uid = $scope.auth.user.uid.split(':');
-              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_jeneric/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
+              $scope.myURL = $rootScope.DestinyURL + '/ansible_jeneric/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
           
               $http({method: 'GET', url: $scope.myURL}).
                 success(function(data, status) {
@@ -610,7 +610,7 @@ angular.module('myApp.controllers', [])
 	      }).then(function(ref) {
               // the key of the new job = job_id
               var stripped_uid = $scope.auth.user.uid.split(':');
-              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/rax_create_server/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
+              $scope.myURL = $rootScope.DestinyURL + '/rax_create_server/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
           
               $http({method: 'GET', url: $scope.myURL}).
                 success(function(data, status) {
@@ -663,7 +663,7 @@ angular.module('myApp.controllers', [])
                                       host_list: dictHosts }).then(function(ref) {
               // the key of the new job = job_id
               var stripped_uid = $scope.auth.user.uid.split(':');
-              $scope.myURL = 'http://destiny.cloudmanifest.com:8000/ansible_jeneric/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
+              $scope.myURL = $rootScope.DestinyURL + '/ansible_jeneric/' + stripped_uid[1] + '/' + $scope.projectID + '/' + ref.name();
           
               $http({method: 'GET', url: $scope.myURL}).
                 success(function(data, status) {

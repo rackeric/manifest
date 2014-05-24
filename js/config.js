@@ -12,17 +12,8 @@ angular.module('myApp.config', [])
 
    // your Firebase URL goes here
    .constant('FBURL', 'https://deploynebula.firebaseio.com')
+   
+   // Destiny servers
+   
+   .constant('DestinyURL', 'http://destiny.cloudmanifest.com')
 
-   //you can use this one to try out a demo of the seed
-//   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');
-
-
-/*********************
- * !!FOR E2E TESTING!!
- *
- * Must enable email/password logins and manually create
- * the test user before the e2e tests will pass
- *
- * user: test@test.com
- * pass: test123
- */
