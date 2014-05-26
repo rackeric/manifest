@@ -15,5 +15,5 @@ angular.module('myApp.config', [])
    
    // Destiny servers
    
-   .constant('DestinyURL', 'http://destiny.cloudmanifest.com')
+   .constant('DestinyURL', 'https://destiny.cloudmanifest.com')
 
