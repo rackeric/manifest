@@ -270,7 +270,7 @@
                     </tr>
                     <tr ng-repeat="var in variables | orderByPriority">
                         <td>
-                            <a href="#/projects/{{ projectID }}/roles/{{ var.$id }}" ng-model="var.$priority">{{ var.name }}</a>
+                            {{ var.name }}
                         </td><td>
                             {{ var.value }}
                         </td><td>
@@ -297,7 +297,7 @@
                     </tr>
                     <tr ng-repeat="handler in handlers | orderByPriority">
                         <td>
-                            <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ handler.name }}</a>
+                            {{ handler.name }}
                         </td><td>
                             {{ handler.service_name }}
                         </td><td>
@@ -324,7 +324,7 @@
                     </tr>
                     <tr ng-repeat="include in includes | orderByPriority">
                         <td>
-                            <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ include.name }}</a>
+                            {{ include.name }}
                         </td><td>
                             <button type="button" class="btn btn-danger btn-xs" ng-click="removeInclude(include.$id)">Delete</button>
                         </td>
@@ -361,7 +361,7 @@
                     </tr>
                     <tr ng-show="modules" ng-repeat="module in modules | orderByPriority | orderBy:'order' | filter:searchText">
                         <td>
-                            <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ module.name }}</a>
+                            {{ module.name }}
                         </td><td>
                             {{ module.option }}
                         </td><td>

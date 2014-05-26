@@ -242,19 +242,19 @@
                     </tr>
                     <tr ng-repeat="(key, item) in inventory | orderByPriority">
                         <td>
-                            {{ item.name }}
+                            <a href="#" editable-text="item.name">{{ item.name }}</a>
                         </td>
                         <td>
-                            {{ item.group }}
+                            <a href="#" editable-text="item.group">{{ item.group }}</a>
                         </td>
                         <td>
-                            {{ item.ansible_ssh_host }}
+                            <a href="#" editable-text="item.ansible_ssh_host">{{ item.ansible_ssh_host }}</a>
                         </td>
                         <td>
-                            {{ item.ansible_ssh_user }}
+                            <a href="#" editable-text="item.ansible_ssh_user">{{ item.ansible_ssh_user }}</a>
                         </td>
                         <td>
-                            {{ item.ansible_ssh_pass }}
+                            <a href="#" editable-text="item.ansible_ssh_pass">{{ item.ansible_ssh_pass }}</a>
                         </td>
                         <td>
                             <input class="input sm" ng-model="commandToRun" placeholder="command"> <button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
