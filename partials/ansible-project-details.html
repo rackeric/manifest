@@ -237,6 +237,7 @@
                         <th>Group</th>
                         <th>Host</th>
                         <th>User</th>
+                        <th>Pass</th>
                         <th>Actions</th>
                     </tr>
                     <tr ng-repeat="(key, item) in inventory | orderByPriority">
@@ -251,6 +252,9 @@
                         </td>
                         <td>
                             {{ item.ansible_ssh_user }}
+                        </td>
+                        <td>
+                            {{ item.ansible_ssh_pass }}
                         </td>
                         <td>
                             <input class="input sm" ng-model="commandToRun" placeholder="command"> <button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
