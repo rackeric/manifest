@@ -1,17 +1,14 @@
-<!-- Include required JS files -->
+<!--  WORK IN PROGRESS ON SYNTAX HIGHLIGHTER
+
 <script type="text/javascript" src="../js/shCore.js"></script>
  
-<!--
-    At least one brush, here we choose JS. You need to include a brush for every
-    language you want to highlight
--->
 <script type="text/javascript" src="../js/shBrushJScript.js"></script>
 <script type="text/javascript" src="../js/shBrushYaml.js"></script>
  
-<!-- Include *at least* the core style and default theme -->
 <link href="../css/shCore.css" rel="stylesheet" type="text/css" />
 <link href="../css/shThemeDefault.css" rel="stylesheet" type="text/css" />
 
+-->
 
 <div class="page-header"><h2><a href="#" editable-text="role.name">{{ role.name }}</a><br><small>{{ role.description }}</small></h2></div>
 
@@ -414,23 +411,6 @@
 </pre>
     </div>
 </div>
-<!-- End of Ethans Practice Generator -->
-
-
-        <!-- START: testing sortable bullshit
-        
-        <ul ui-sortable="sortableOptions" ng-model="modules" id="sortMe">
-          <li ng-repeat="(key, module) in modules" id="module_{{module.$id}}">{{ module.name }}</li>
-        </ul>
-        
-        <ul ui-sortable="sortableOptions" id="sortMe">
-            <li id="module_-a5">something1</li>
-            <li id="module_-b23">something2</li>
-            <li id="module_-c234">something3</li>
-            <li id="module_-d345">something4</li>
-        </ul>
-        
-        END: testing sortable bullshit -->
 
 <br />
 
@@ -445,7 +425,8 @@
   .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
 </style>
 
-<!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
+<!-- 
 <script type="text/javascript">
      SyntaxHighlighter.all()
 </script>
+Finally, to actually run the highlighter, you need to include this JS on your page -->
