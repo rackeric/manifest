@@ -359,7 +359,7 @@
                         <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-repeat="module in modules | orderByPriority | orderBy:'order' | filter:searchText">
+                    <tr ng-show="modules" ng-repeat="module in modules | orderByPriority | orderBy:'order' | filter:searchText">
                         <td>
                             <a href="#/projects/{{ projectID }}/roles/{{ key }}">{{ module.name }}</a>
                         </td><td>
@@ -369,7 +369,7 @@
                         </td><td>
                             {{ module.notify }}
                         </td><td>
-                            {{ module.order }}
+                            <input type="text" ng-model="module.order" />
                         </td><td>
                             <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(module.$id)">Delete</button>
                         </td>

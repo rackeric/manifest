@@ -809,8 +809,9 @@ angular.module('myApp.controllers', [])
       serviceRole($scope.projectID, $scope.roleID).$bind($scope, "role");
       //$scope.role = serviceRole($scope.projectID, $scope.roleID);
       
-      //serviceRoleModules($scope.projectID, $scope.roleID).$bind($scope, "modules");
-      $scope.modules = serviceRoleModules($scope.projectID, $scope.roleID);
+      //TESTING ORDER
+      serviceRoleModules($scope.projectID, $scope.roleID).$bind($scope, "modules");
+      //$scope.modules = serviceRoleModules($scope.projectID, $scope.roleID);
       
       $scope.variables = serviceRoleVariables($scope.projectID, $scope.roleID);
       $scope.handlers = serviceRoleHandlers($scope.projectID, $scope.roleID);
