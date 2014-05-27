@@ -106,49 +106,50 @@
                 <div class="row">
                   <div class="col-sm-12">
                       <div><!-- <div ng-model="inventoryOptions" ng-repeat="option in inventoryOptions | orderByPriority"> -->
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <!-- <input type="hidden" ng-model="option.name" value="{{ option.name }}"> -->
                           <!-- <input class="form-control" type="text" ng-model="option.value" tooltip="{{ option.description }}" tooltip-trigger="focus" tooltip-placement="above"> -->
                           <!-- <span class="help-block">{{ option.name }}</span> -->
                           <input class="form-control" type="text" ng-model="ansible_ssh_host">
                           <span class="help-block">ansible_ssh_host</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_port">
                           <span class="help-block">ansible_ssh_port</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_user">
                           <span class="help-block">ansible_ssh_user</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="password" ng-model="ansible_ssh_pass">
                           <span class="help-block">ansible_ssh_pass</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="password" ng-model="ansible_sudo_pass">
                           <span class="help-block">ansible_sudo_pass</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_connection">
                           <span class="help-block">ansible_connection</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_ssh_private_key_file">
                           <span class="help-block">ansible_ssh_private_key_file</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_python_interpreter">
                           <span class="help-block">ansible_python_interpreter</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-2 form-group">
                           <input class="form-control" type="text" ng-model="ansible_interpreter">
                           <span class="help-block">ansible\_\*\_interpreter</span>
                         </div>
-                        <button class="btn btn-primary btn" type="submit" ng-click="addHost()">Add Host</button>
+                        <div class="col-sm-12 form-group">
+                          <button class="btn btn-primary btn pull-right" type="submit" ng-click="addHost()">Add Host</button>
                         </div>
+                        
                       </div><!-- </div> -->
-                      
                   </div>
                 </div>
             </div>
@@ -174,34 +175,34 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                  <div class="col-sm-6">
-                      <div class="col-sm-6">
+                  <div class="col-sm-12">
+                      <div class="col-sm-4">
                         <input type="text" class="form-control" ng-model="newServerName">
                         <span class="help-block">New Server Name</span>
                       </div>
-                      <div class="col-sm-6">
-                        <input class="form-control" type="text" ng-model="region">
-                        <span class="help-block">Region</span>
-                      </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                         <input class="form-control" type="text" ng-model="ansible_group">
                         <span class="help-block">Group</span>
+                      </div>
+                      <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="region">
+                        <span class="help-block">Region</span>
                       </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
                       <div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-6 form-group">
                           <input class="form-control" type="text" ng-model="rax_flavor">
                           <span class="help-block">Flavor ID</span>
                         </div>
-                        <div class="col-sm-3 form-group">
+                        <div class="col-sm-6 form-group">
                           <input class="form-control" type="text" ng-model="rax_image">
                           <span class="help-block">Image UUID</span>
                         </div>
                         
-                        <button class="btn btn-primary btn" type="submit" ng-click="rax_createServer()">Create Server</button>
+                        <button class="btn btn-primary btn pull-right" type="submit" ng-click="rax_createServer()">Create Server</button>
                         </div>
                       </div><!-- </div> -->
                       
