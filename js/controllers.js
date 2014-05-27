@@ -516,6 +516,8 @@ angular.module('myApp.controllers', [])
 	  
 	  // button: run ansible playbook
 	  $scope.ansible_playbook = function(playbook_key) {
+	    var runPlay = confirm('Run this playbook?');
+        if (runPlay) {
 	      
 	      // send ansible playbook request to API
 	      var stripped_uid = $scope.auth.user.uid.split(':');
@@ -530,6 +532,8 @@ angular.module('myApp.controllers', [])
               $scope.data = data || "Request failed";
               $scope.status = status;
           });
+          
+        }
 	      
 	      
 	  }
