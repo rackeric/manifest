@@ -106,7 +106,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                       <div><!-- <div ng-model="inventoryOptions" ng-repeat="option in inventoryOptions | orderByPriority"> -->
-                        <div class="col-sm-2 form-group">
+                        <div class="col-sm-2 form-group has-error">
                           <!-- <input type="hidden" ng-model="option.name" value="{{ option.name }}"> -->
                           <!-- <input class="form-control" type="text" ng-model="option.value" tooltip="{{ option.description }}" tooltip-trigger="focus" tooltip-placement="above"> -->
                           <!-- <span class="help-block">{{ option.name }}</span> -->
@@ -117,11 +117,11 @@
                           <input class="form-control" type="text" ng-model="ansible_ssh_port">
                           <span class="help-block">ansible_ssh_port</span>
                         </div>
-                        <div class="col-sm-2 form-group">
+                        <div class="col-sm-2 form-group has-error">
                           <input class="form-control" type="text" ng-model="ansible_ssh_user">
                           <span class="help-block">ansible_ssh_user</span>
                         </div>
-                        <div class="col-sm-2 form-group">
+                        <div class="col-sm-2 form-group has-error">
                           <input class="form-control" type="password" ng-model="ansible_ssh_pass">
                           <span class="help-block">ansible_ssh_pass</span>
                         </div>
@@ -201,8 +201,8 @@
                           <input class="form-control" type="text" ng-model="rax_image">
                           <span class="help-block">Image UUID</span>
                         </div>
-                        {{ images }}
-                        <button class="btn btn-primary pull-right" type="submit" ng-click="getServerImages()">List Images</button>
+                        <!-- {{ images }}
+                        <button class="btn btn-primary pull-right" type="submit" ng-click="getServerImages()">List Images</button>  -->
                         <button class="btn btn-primary pull-right" type="submit" ng-click="rax_createServer()">Create Server</button>
                         </div>
                       </div><!-- </div> -->
