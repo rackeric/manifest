@@ -4,51 +4,6 @@
 
 angular.module('myApp.controllers', [])
 
-  .controller('Test123Ctrl', ['$scope', 'syncData', '$http', function($scope, syncData, $http) {
-      
-    
-      
-  }])
-
-  .controller('TestingCtrl', ['$scope', 'syncData', '$http', function($scope, syncData, $http) {
-      
-      $scope.external_data = syncData('external_data');
-      
-      $scope.ansibleJeneric = function(host_list, module_name, module_args, pattern, remote_user, remote_pass, private_key_file) {
-          $scope.code = null;
-          $scope.response = null;
-          $scope.job_id = null;
-          
-          $scope.external_data.$add({ status: "QUEUED", host_list: host_list,
-                                                        module_name: module_name, 
-                                                        module_args: module_args, 
-                                                        pattern: pattern, 
-                                                        remote_user: remote_user, 
-                                                        remote_pass: remote_pass,
-                                                        private_key_file: private_key_file }).then(function(ref) {
-              // the key of the new job = job_id
-              
-              $scope.myURL = $rootScope.DestinyURL + '/ansible_jeneric_testing/' + ref.name();
-          
-              $http({method: 'GET', url: $scope.myURL}).
-                success(function(data, status) {
-                  $scope.status = status;
-                  $scope.data = data;
-                }).
-                error(function(data, status) {
-                  $scope.data = data || "Request failed";
-                  $scope.status = status;
-              });
-          });
-      }
-      
-      $scope.clear = function() {
-          $scope.external_data.$remove();
-      }
-      
-  }])
-
-
   .controller('foot', ['$scope', '$location', 'syncData', 'serviceFeedbacklist', function($scope, $location, syncData, serviceFeedbacklist) {
       
       console.log("FOOTER CONTROLLER ------>>>>");
@@ -85,63 +40,7 @@ angular.module('myApp.controllers', [])
 
   .controller('RepositoryCtrl', ['$scope', 'syncData', '$http', function($scope, syncData, $http) {
       // nothing yet
-      $scope.external_data = syncData('external_data');
       
-      $scope.uptime = function() {
-          $scope.code = null;
-          $scope.response = null;
-        
-          $http({method: 'GET', url: $rootScope.DestinyURL + '/ansible_test1/'}).
-            success(function(data, status) {
-              $scope.status = status;
-              $scope.data = data;
-            }).
-            error(function(data, status) {
-              $scope.data = data || "Request failed";
-              $scope.status = status;
-          });
-      }
-      
-      $scope.df = function() {
-          $scope.code = null;
-          $scope.response = null;
-        
-          $http({method: 'GET', url: $rootScope.DestinyURL + '/ansible_test2/'}).
-            success(function(data, status) {
-              $scope.status = status;
-              $scope.data = data;
-            }).
-            error(function(data, status) {
-              $scope.data = data || "Request failed";
-              $scope.status = status;
-          });
-      }
-      
-      $scope.command_run = function() {
-          $scope.code = null;
-          $scope.response = null;
-          $scope.job_id = null;
-          
-          $scope.external_data.$add({ status: "QUEUED", host: $scope.host_to_run_on, command: $scope.command_to_run }).then(function(ref) {
-              // the key of the new job = job_id
-              
-              $scope.myURL = $rootScope.DestinyURL + '/ansible_command_run/' + ref.name();
-          
-              $http({method: 'GET', url: $scope.myURL}).
-                success(function(data, status) {
-                  $scope.status = status;
-                  $scope.data = data;
-                }).
-                error(function(data, status) {
-                  $scope.data = data || "Request failed";
-                  $scope.status = status;
-              });
-          });
-      }
-      
-      $scope.clear = function() {
-          $scope.external_data.$remove();
-      }
       
   }])
 
@@ -535,7 +434,6 @@ angular.module('myApp.controllers', [])
           
         }
 	      
-	      
 	  }
 	  
 	  // button: ping host and command... has been expanded
@@ -626,8 +524,26 @@ angular.module('myApp.controllers', [])
                   $scope.status = status;
               });
 	        });
+	  }
+	  
+	  // RAX list available server images from api
+	  $scope.images = [];
+	  $scope.getServerImages = function() {
 	      
-	      
+	      $scope.myURL = $rootScope.DestinyURL + '/rax_list_images/' + $scope.rax_username + '/' + $scope.rax_apikey;
+
+	      $http.defaults.useXDomain = true;
+	      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+          $http({method: 'POST', url: $scope.myURL, headers: {'X-Auth-Token': '76509ae6fcd94c13baec673672b537f4'}}).
+            success(function(data, status) {
+              $scope.status = status;
+              $scope.images = data;
+            }).
+            error(function(data, status) {
+              $scope.images = data || "Request failed";
+              $scope.status = status;
+          });
 	      
 	  }
 	  
@@ -814,8 +730,8 @@ angular.module('myApp.controllers', [])
       //$scope.role = serviceRole($scope.projectID, $scope.roleID);
       
       //TESTING ORDER
-      serviceRoleModules($scope.projectID, $scope.roleID).$bind($scope, "modules");
-      //$scope.modules = serviceRoleModules($scope.projectID, $scope.roleID);
+      serviceRoleModules($scope.projectID, $scope.roleID).$bind($scope, "modulesOrder");
+      $scope.modules = serviceRoleModules($scope.projectID, $scope.roleID);
       
       $scope.variables = serviceRoleVariables($scope.projectID, $scope.roleID);
       $scope.handlers = serviceRoleHandlers($scope.projectID, $scope.roleID);

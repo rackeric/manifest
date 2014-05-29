@@ -356,7 +356,7 @@
                         <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    <tr ng-show="modules" ng-repeat="module in modules | orderByPriority | orderBy:'order' | filter:searchText">
+                    <tr ng-show="modules" ng-repeat="module in modulesOrder | orderByPriority | orderBy:'order' | filter:searchText">
                         <td>
                             {{ module.name }}
                         </td><td>

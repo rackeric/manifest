@@ -201,8 +201,9 @@
                           <input class="form-control" type="text" ng-model="rax_image">
                           <span class="help-block">Image UUID</span>
                         </div>
-                        
-                        <button class="btn btn-primary btn pull-right" type="submit" ng-click="rax_createServer()">Create Server</button>
+                        {{ images }}
+                        <button class="btn btn-primary pull-right" type="submit" ng-click="getServerImages()">List Images</button>
+                        <button class="btn btn-primary pull-right" type="submit" ng-click="rax_createServer()">Create Server</button>
                         </div>
                       </div><!-- </div> -->
                       
