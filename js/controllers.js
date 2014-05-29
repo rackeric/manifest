@@ -307,8 +307,8 @@ angular.module('myApp.controllers', [])
       // NOW HARD CODED $scope.inventoryOptions = syncData('hostoptions/ansible');
       
       // inventory list to be set by user
-      syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory').$bind($scope, 'inventory');
-      //$scope.inventory = syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory');
+      syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory').$bind($scope, 'inventoryBinded');
+      $scope.inventory = syncData('users/' + $scope.auth.user.uid + '/projects/' + $scope.projectID + '/inventory');
 
 	  // set roles
 	  //serviceRoles($scope.projectID).$bind($scope, "roles");

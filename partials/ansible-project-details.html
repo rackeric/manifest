@@ -242,7 +242,7 @@
                         <th>Pass</th>
                         <th>Actions</th>
                     </tr>
-                    <tr ng-repeat="(key, item) in inventory | orderByPriority">
+                    <tr ng-repeat="(key, item) in inventoryBinded | orderByPriority">
                         <td>
                             <a href="#" editable-text="item.name">{{ item.name }}</a>
                         </td>
