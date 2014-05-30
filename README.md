@@ -10,4 +10,4 @@ Built with:
 - AngularFire
 - Bootstrap 3
 
-Currently testing at https://dev.deploynebula.com
+Currently at https://cloudmanifest.com
