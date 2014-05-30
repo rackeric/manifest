@@ -6,25 +6,23 @@ angular.module('myApp.routes', ['ngRoute'])
    // which should only be available while logged in
    .config(['$routeProvider', function($routeProvider) {
       
-      $routeProvider.when('/test123', {
-         templateUrl: 'partials/test123.html',
-         controller: 'Test123Ctrl'
-      });
-      
       $routeProvider.when('/home', {
          templateUrl: 'partials/home.html',
-         controller: 'HomeCtrl'
+         controller: 'HomeCtrl',
+         label: 'Home'
       });
 
       $routeProvider.when('/chat', {
          templateUrl: 'partials/chat.html',
-         controller: 'ChatCtrl'
+         controller: 'ChatCtrl',
+         label: 'Chat'
       });
 
       $routeProvider.when('/account', {
          authRequired: true, // must authenticate before viewing this page
          templateUrl: 'partials/account.html',
-         controller: 'AccountCtrl'
+         controller: 'AccountCtrl',
+         label: 'Account'
       });
 
       $routeProvider.when('/login', {
@@ -35,20 +33,23 @@ angular.module('myApp.routes', ['ngRoute'])
       $routeProvider.when('/projects', {
          authRequired: true,
          templateUrl: 'partials/project.html',
-         controller: 'ProjectCtrl'
+         controller: 'ProjectCtrl',
+         tabel: 'Projects'
       });
       
       //  START ANSIBLE SECTION
       $routeProvider.when('/projects/Ansible/:projectId', {
           authRequired: true,
           templateUrl: 'partials/ansible-project-details.html',
-          controller: 'AnsibleProjectDetailsCtrl'
+          controller: 'AnsibleProjectDetailsCtrl',
+          label: 'Ansible Project'
       });
       
       $routeProvider.when('/projects/Ansible/:projectId/roles/:roleId', {
           authRequired: true,
           templateUrl: 'partials/ansible-role-details.html',
-          controller: 'AnsibleRoleDetailsCtrl'
+          controller: 'AnsibleRoleDetailsCtrl',
+          label: 'Playbook'
       });
       //  END ANSIBLE SECTION
       
@@ -56,13 +57,15 @@ angular.module('myApp.routes', ['ngRoute'])
       $routeProvider.when('/projects/Salt/:projectId', {
           authRequired: true,
           templateUrl: 'partials/salt-project-details.html',
-          controller: 'SaltProjectDetailsCtrl'
+          controller: 'SaltProjectDetailsCtrl',
+          label: 'Salt Project'
       });
       
       $routeProvider.when('/projects/Salt/:projectId/roles/:roleId', {
           authRequired: true,
           templateUrl: 'partials/salt-role-details.html',
-          controller: 'SaltRoleDetailsCtrl'
+          controller: 'SaltRoleDetailsCtrl',
+          label: 'Role Details'
       });
       //  END SALT SECTION
 
@@ -79,7 +82,8 @@ angular.module('myApp.routes', ['ngRoute'])
       $routeProvider.when('/poof', {
          authRequired: true,
          templateUrl: 'partials/admin.html',
-         controller: 'AdminCtrl'
+         controller: 'AdminCtrl',
+         label: 'Admin'
       });
       
       $routeProvider.when('/ansiblemodulelist', {
@@ -102,13 +106,9 @@ angular.module('myApp.routes', ['ngRoute'])
       
       $routeProvider.when('/repository', {
          templateUrl: 'partials/repository.html',
-         controller: 'RepositoryCtrl'
+         controller: 'RepositoryCtrl',
+         label: 'Repository'
       });
       
-      $routeProvider.when('/testing', {
-         templateUrl: 'partials/testing.html',
-         controller: 'TestingCtrl'
-      });
-
       $routeProvider.otherwise({redirectTo: '/home'});
    }]);
