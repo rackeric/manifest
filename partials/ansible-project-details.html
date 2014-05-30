@@ -239,7 +239,7 @@
                         <th>Group</th>
                         <th>Host</th>
                         <th>User</th>
-                        <th>Pass</th>
+                        <th>Password</th>
                         <th>Actions</th>
                     </tr>
                     <tr ng-repeat="(key, item) in inventoryBinded | orderByPriority">
@@ -256,7 +256,7 @@
                             <a href="#" editable-text="item.ansible_ssh_user">{{ item.ansible_ssh_user }}</a>
                         </td>
                         <td>
-                            <a href="#" editable-text="item.ansible_ssh_pass">{{ item.ansible_ssh_pass }}</a>
+                            <a href="#" editable-text="item.ansible_ssh_pass">Change Password</a>
                         </td>
                         <td>
                             <input class="input sm" ng-model="commandToRun" placeholder="command"> <button class="btn btn-xs btn-primary" ng-click="ansibleJeneric(item.$id, 'command', commandToRun)">Run Command</button>
