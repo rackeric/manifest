@@ -436,8 +436,50 @@ angular.module('myApp.controllers', [])
       // vars for inventory
       //$scope.ansible_ssh_host = "";
 
+      // alerts for RAX create server
+      $scope.newServerAlerts = [];
+    
+      $scope.newServerAddAlert = function(myType, myMsg) {
+        $scope.newServerAlerts.push({type: myType, msg: myMsg});
+      };
+    
+      $scope.newServerCloseAlert = function(index) {
+        $scope.newServerAlerts.splice(index, 1);
+      };
+      // end alerts
+      
+      // alerts for add new host
+      $scope.newHostAlerts = [];
+    
+      $scope.newHostAddAlert = function(myType, myMsg) {
+        $scope.newHostAlerts.push({type: myType, msg: myMsg});
+      };
+    
+      $scope.newHostCloseAlert = function(index) {
+        $scope.newHostAlerts.splice(index, 1);
+      };
+      // end alerts
+      
+      // alerts for run play
+      $scope.runPlayAlerts = [];
+    
+      $scope.runPlayAddAlert = function(myType, myMsg) {
+        $scope.runPlayAlerts.push({type: myType, msg: myMsg});
+      };
+    
+      $scope.runPlayCloseAlert = function(index) {
+        $scope.runPlayAlerts.splice(index, 1);
+      };
+      // end alerts
+
+
+
+
 	  // add new host to the list
 	  $scope.addHost = function() {
+	      
+	      // add host to newHostAlert
+	      $scope.newHostAddAlert('success', 'Added host ' + $scope.newHostName + ' to the Inventory.');
 
 	      var sanitizedOptions = [];
 	      var sanitizedString = "";
@@ -524,6 +566,9 @@ angular.module('myApp.controllers', [])
 	  $scope.ansible_playbook = function(playbook_key) {
 	    var runPlay = confirm('Run this playbook?');
         if (runPlay) {
+            
+          // add host to runPlayAlert
+	      $scope.runPlayAddAlert('success', 'Running playbook, if it does not complete check that hosts and user are set in the play.');
 
 	      // send ansible playbook request to API
 	      var stripped_uid = $scope.auth.user.uid.split(':');
@@ -604,6 +649,9 @@ angular.module('myApp.controllers', [])
 
 	  // button: RAX create server
 	  $scope.rax_createServer = function() {
+	      
+	      // add alert to newServerAlerts
+	      $scope.newServerAddAlert('success', 'Creating server ' + $scope.newServerName + ' in the Rackspace Cloud.');
 
 	      $scope.external_data.$add({
 	          user_id: $scope.auth.user.uid,
