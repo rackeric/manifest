@@ -110,5 +110,11 @@ angular.module('myApp.routes', ['ngRoute'])
          label: 'Repository'
       });
       
+      $routeProvider.when('/repository/:roleId', {
+         templateUrl: 'partials/ansiblePublicDetails.html',
+         controller: 'AnsiblePublicDetailsCtrl',
+         label: 'Ansible Public Details'
+      });
+      
       $routeProvider.otherwise({redirectTo: '/home'});
    }]);

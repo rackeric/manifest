@@ -23,6 +23,18 @@
           return $firebase(ref);
       }])
       
+      .service('serviceAnsibleRepo', ["$firebase", function($firebase) {
+          var ref = new Firebase("https://deploynebula.firebaseio.com/public_repos/ansible");
+          return $firebase(ref);
+      }])
+      
+      .service('serviceAnsibleRepoItem', ["$firebase", function($firebase) {
+          return function(roleID) {
+              var ref = new Firebase("https://deploynebula.firebaseio.com/public_repos/ansible/" + roleID);
+              return $firebase(ref);
+          }
+      }])
+      
       .service('serviceProjects', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects");
           return $firebase(ref);
@@ -31,6 +43,13 @@
       .service('serviceProject', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID) {
               var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID);
+              return $firebase(ref);
+          }
+      }])
+      
+      .service('serviceProjectName', ["$rootScope", "$firebase", function($rootScope, $firebase) {
+          return function(projectID) {
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + '/name');
               return $firebase(ref);
           }
       }])
