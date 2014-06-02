@@ -263,6 +263,53 @@ angular.module('myApp.controllers', [])
 	}
 
   }])
+  
+  .controller('AnsibleCloudModuleListCtrl', ['$scope', 'syncData', function($scope, syncData) {
+    $scope.moduleslist = syncData('moduleslist/ansible_cloud');
+    $scope.choices = [];
+
+    // insert module to db
+    $scope.addToModulesList = function() {
+    $scope.moduleslist.$add({
+                                name: $scope.newModuleName,
+                                description: $scope.newModuleDescription,
+                                category: $scope.newModuleCategory,
+                                options: $scope.choices
+    })
+    $scope.newModuleName = null;
+    $scope.newModuleDescription = null;
+    $scope.newModuleCategory = null;
+    $scope.choices = [];
+    }
+
+    // remove text field
+    $scope.removeChoice = function() {
+      $scope.choices.pop();
+    }
+    // add text field
+    $scope.addNewChoice = function() {
+      var newItemNo = $scope.choices.length+1;
+      $scope.choices.push({});
+    };
+    // the other thing
+    $scope.showAddChoice = function(choice) {
+      return choice.id === $scope.choices[$scope.choices.length-1].id;
+    };
+    // show choice lable
+    $scope.showChoiceLabel = function (choice) {
+      return choice.id === $scope.choices[0].id;
+    }
+
+    // remove ansible module
+	$scope.removeModule = function(key) {
+	  var deleteModule = confirm('Are you absolutely sure you want to delete?');
+      if (deleteModule) {
+      //alert('Going to delete the user');
+      $scope.moduleslist.$remove(key);
+      }
+	}
+
+  }])
 
   .controller('SaltModuleListCtrl', ['$scope', 'syncData', function($scope, syncData) {
     $scope.moduleslist = syncData('moduleslist/salt');

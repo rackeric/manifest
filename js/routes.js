@@ -92,6 +92,12 @@ angular.module('myApp.routes', ['ngRoute'])
          controller: 'AnsibleModuleListCtrl'
       });
       
+      $routeProvider.when('/ansiblecloudmodulelist', {
+         authRequired: true,
+         templateUrl: 'partials/ansiblecloudmodulelist.html',
+         controller: 'AnsibleCloudModuleListCtrl'
+      });
+      
       $routeProvider.when('/ansibleinventoryoptions', {
          authRequired: true,
          templateUrl: 'partials/ansibleinventoryoptions.html',
