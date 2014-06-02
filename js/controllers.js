@@ -37,6 +37,10 @@ angular.module('myApp.controllers', [])
       }
 
   }])
+  
+  .controller('GettingStartedAnsibleCtrl', ['$scope', 'syncData', function($scope, syncData) {
+
+  }])
 
   .controller('RepositoryCtrl', ['$scope', 'syncData', '$http', 'serviceAnsibleRepo', 'serviceProjects', 'serviceProject', 'serviceRoles', function($scope, syncData, $http, serviceAnsibleRepo, serviceProjects, serviceProject, serviceRoles) {
       // ansible public repo
@@ -1072,7 +1076,11 @@ angular.module('myApp.controllers', [])
 	    }
 
 		if( $scope.newModuleName && $scope.newModuleAction && ifProceed ) {
-		  var order = Object.keys($scope.modules).length - 10;
+		  // counting order
+		  var nr = 0;
+		  for (var m in $scope.modules) nr++;
+		  //var order = Object.keys($scope.modules).length - 10;
+		  var order = nr - 10;
 		  console.log( "order: " + order);
 		  if ( $scope.newModuleNotify ) {
               $scope.modules.$add({ user_id: $scope.auth.user.uid,

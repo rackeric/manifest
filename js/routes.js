@@ -122,5 +122,11 @@ angular.module('myApp.routes', ['ngRoute'])
          label: 'Ansible Public Details'
       });
       
+      $routeProvider.when('/GettingStartedAnsible', {
+         templateUrl: 'partials/GettingStartedAnsible.html',
+         controller: 'GettingStartedAnsible',
+         label: 'Getting Started Ansible'
+      });
+      
       $routeProvider.otherwise({redirectTo: '/home'});
    }]);
