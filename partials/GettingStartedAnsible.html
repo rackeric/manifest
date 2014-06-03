@@ -74,7 +74,7 @@
   <dd>The size of Cloud server you wish to build.</dd>
   <br />
   <dd><b>Image</b></dd>
-  <dd>The type of Cloud server you wish to build.</dd>
+  <dd>The UUID of cloud server image you wish to build.</dd>
   <br />
  
   <dt>Inventory</dt>
@@ -126,7 +126,7 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <br />
 
   <dt>Import Playbook</dt>
-  <dd>YET TO BE DETERMINED</dd>
+  <dd>Coming soon, available on self hosted Destiny servers.</dd>
   <br />
 
   <dt>Creating a Playbook</dt>
@@ -161,7 +161,7 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <br />
   <dd>Once a module is chosen then a few things happen depending on the module:</dd>
   <br />
-  <dd><b>Desctiption</b></dd>
+  <dd><b>Description</b></dd>
   <dd>This gives a brief description of what this module does as defined by Ansible itself.</dd>
   <br />
   <dd><b>Options</b></dd>
@@ -187,13 +187,18 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <br />
 
   <dt>Add Play Variables</dt>
-
+  <dd>Variables can be used in jinja templated files you push to server.</dd>
+  <br />
   <dd><b>Variable Name</b></dd>
   <dd>Name of the variable</dd>
-  <dd>Value</dd>
+  <br />
+  <dd><b>Value</b></dd>
+  <dd>Value of the variable being set</dd>
   <br />
 
   <dt>Add Play Handlers</dt>
+  <dd>Handlers are used to control system services and can be triggered by other tasks.</dd>
+  <br />
   <dd><b>Handler Name</b></dd>
   <dd>Name of the handler</dd>
   <br />
