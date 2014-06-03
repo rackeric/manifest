@@ -12,6 +12,8 @@
 
   <dd>The first thing you’re going to want to do is create a project. A project in Manifest-Destiny is basically your website, but can be anything you want. If you work on multiple websites then this is how you can keep everything separate and organized. This is also where we suggest you divide your production and development environments. For example, say you’re working on WebsiteA, we would suggest you create two projects called ‘WebsiteA-Prod’ and ‘WebsiteA-Dev’. With the ability to share roles and playbooks between projects it makes it easy to work in your development environment and only move onto your production environment when ready!</dd>
   <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/addproject.png" class="img-responsive"></dd>
+  <br />
   <dd>There are three things to fill out when creating a project:</dd>
   <br />
   <dd><b>Name</b></dd>
@@ -25,6 +27,10 @@
   <br />
   
   <dd>Once you have everything filled out then all you need to do is click on the Add button and you have created your first project! Once created you can either click on the project name or the Manage button to go inside the project.</dd>
+  <br />
+  
+  
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/projects.png" class="img-responsive"></dd>
   <br />
 
   <dt>Inside a Project</dt>
@@ -44,11 +50,15 @@
   <dt>Add a Host</dt>
 
   <dd>A host is just a Cloud server that you want Ansible to interact with. If you have built a Cloud server outside of Manifest-Destiny that you wish to interact with still then you can manually add it to the inventory file so that you can run playbooks against it.</dd>
-<br />
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/addhost.png" class="img-responsive"></dd>
+  <br />
  
   <dt>Create a Cloud Server</dt>
 
   <dd>You can create Rackspace Cloud servers from Manifest that will automatically be added to the inventory file. Creating a Rackspace Cloud server through Manifest is just as easy as creating it through the mycloud.rackspace.com portal, but with a few more options:</dd>
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/rax.png" class="img-responsive"></dd>
   <br />
  
   <dd><b>Region</b></dd>
@@ -71,15 +81,20 @@
 
   <dd>The inventory is a list of your Cloud servers and what group they belong to. It’s with this that playbooks will associate which hosts to run a playbook against.
 You can also run Ansible ad-hoc commands from this section. To learn more about ad-hoc commands please visit http://docs.ansible.com/intro_adhoc.html</dd>
-<br />
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/inventory.png" class="img-responsive"></dd>
+  <br />
  
   <dt>Jobs</dt>
-
   <dd>Whenever you create a server or run an ad-hoc command through Manifest it will show up under the Jobs section to let you know the status. You can see if it’s queued, running, building or completed.</dd>
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/jobs.png" class="img-responsive"></dd>
   <br />
  
   <dt>Creating a Role</dt>
   <dd>While creating a project helps keep things organized from high-level perspective, we also want to keep things organized within a project, which is why we define roles. A role can be anything you want. You can use a role to define a server or group of servers or even use it to define what sort of playbooks are contained within there. For example, you could create the following roles:</dd>
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/playbooks.png" class="img-responsive"></dd>
   <br />
   <dd><b>Webserver</b></dd>
   <dd>Playbooks created in this role are strictly for webserver type configuration</dd>
@@ -121,6 +136,10 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <dd><b>Add Tasks</b></dd>
   <dd>When you add a task to an Ansible playbook you are defining what function or module you are wanting to be performed or executed when this particular playbook runs against a server. A task can be something as simple as creating users or as complicated as setting up MySQL replication. Typically playbooks have multiple tasks to be performed.</dd>
   <br />
+  
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/addtasks.png" class="img-responsive"></dd>
+  <br />
+  
   <dd>In Manifest-Destiny we have tasks divided into 5 sections:</dd>
   <br />
   <dd><b>All Modules</b></dd>
@@ -150,10 +169,15 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <br />
   <dd>Now that everything has been filled out you can just click on the Add button and the module has now been added to the task section of the playbook!</dd>
   <br />
+  
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/tasks.png" class="img-responsive"></dd>
+  <br />
  
   
   <dt>Set Host(s) and User</dt>
   <dd>Here is where you determine what host(s) to run play against and which user.</dd>
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/misc.png" class="img-responsive"></dd>
   <br />
   <dd><b>Hosts</b></dd>
   <dd>What you put here needs to match a group you have defined in your inventory. Any hosts that is included in this group in the inventory will have the playbook run against it.</dd>
@@ -181,6 +205,13 @@ You can also run Ansible ad-hoc commands from this section. To learn more about 
   <br />
   <dd><b>Add Include</b></dd>
   <dd>Name of other playbook you wish to include in this one</dd>
+  <br />
+  
+  <dt>Generator Output</dt>
+  <dd>Finally, you can see the sample output of what your playbook will look in YAML format.</dd>
+  <br />
+  <dd><img src="https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/generator.png" class="img-responsive"></dd>
+  <br />
 
 </dl>
 

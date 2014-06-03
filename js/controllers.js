@@ -367,16 +367,32 @@ angular.module('myApp.controllers', [])
     $scope.myInterval = 5000;
     var slides = $scope.slides = [];
     $scope.addSlide = function() {
-    var newWidth = 600 + slides.length;
-
-    slides.push({
-      image: 'http://lorempixel.com/1200/600/abstract/1/',
-      text: "another slide"
-    });
-    slides.push({
-        image: 'http://lorempixel.com/1200/600/abstract/1/',
-        text: "yet another slide"
-      })
+        var newWidth = 600 + slides.length;
+    
+        slides.push({
+          image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/misc.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/jobs.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/addhost.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/inventory.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/addtasks.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/tasks.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/rax.png'
+        });
+        slides.push({
+            image: 'https://c5c763d43bcb0cbf38a3-5343f0b2d7b0e3b66bc3dbb0378e6de3.ssl.cf1.rackcdn.com/playbooks.png'
+        });
     };
     $scope.addSlide();
   }])
