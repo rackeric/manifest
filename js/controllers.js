@@ -718,7 +718,7 @@ angular.module('myApp.controllers', [])
 	  $scope.rax_createServer = function() {
 	      
 	      // add alert to newServerAlerts
-	      $scope.newServerAddAlert('success', 'Creating server ' + $scope.newServerName + ' in the Rackspace Cloud.');
+	      $scope.newServerAddAlert('success', 'Creating server ' + $scope.newServerName + ' in the Rackspace Cloud and adding to Inventory.');
 
 	      $scope.external_data.$add({
 	          user_id: $scope.auth.user.uid,
