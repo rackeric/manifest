@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Add Play</h3>
             </div>
@@ -11,19 +11,20 @@
                   <div class="form-group">
                       <input type="text" class="form-control" placeholder="New Role Name" ng-model="newRoleName">
                       <input type="text" class="form-control" placeholder="Description" ng-model="newRoleDescription">
-                      <button class="btn btn-primary btn" type="submit" ng-click="addRole()">Add</button>
+                      <button class="btn btn-primary btn" type="submit" ng-click="addRole()">Add Playbook</button>
+                      <button class="btn btn-primary btn" type="submit" ng-click="addRoleManual()">Manual Entry</button>
                   </div>
                 </form>
             </div>
         </div>
     </div>
      <div class="col-sm-6">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Description / Notes</h3>
             </div>
             <div class="panel-body">
-                <textarea class="form-control" rows="3" ng-model="project.description">{{ project.description }}</textarea>
+                <textarea class="form-control" rows="1" ng-model="project.description">{{ project.description }}</textarea>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
 
 <br />
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">Playbooks
       <small><font color="black"><input class="input-xs pull-right" ng-model="searchText" placeholder="Search" /></font></small></div>
@@ -85,6 +86,41 @@
                 </td>
                 
             </tr>
+            
+            
+            
+            <tr ng-repeat="(key, role) in rolesmanual | orderByPriority | filter:searchText">
+                <td>
+                    <a href="#/projects/Ansible/{{ projectID }}/rolesmanual/{{ role.$id }}">{{ role.name }}</a>
+                </td>
+                <td>
+                    {{ role.description }}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="cloneRole(projectID, role.$id)">Clone</button>
+                    <a href="#/projects/Ansible/{{ projectID }}/rolesmanual/{{ role.$id }}" class="btn btn-info btn-xs" role="button">Manage</a>
+                    <button popover="Click role name at top of next page to rename." popover-title="Rename Project" class="btn btn-warning btn-xs">Rename</button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="submitToRepo(projectID, role.$id)">Submit to Repo</button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeRoleManual(role.$id)">Delete</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="ansible_playbook_manual(role.$id)">Run Manual Playbook</button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="clear_playbook_manual_returns(role.$id)">Clear Returns</button>
+                </td>
+                <td>
+                    {{ role.status }}
+                </td>
+                <td>
+                    <ul ng-repeat="return in role.returns">
+                      <li ng-repeat="(key, value) in return.stats">
+                        {{ key }}: {{ value }}
+                      </li>
+                      <br>
+                      <pre>{{ return.stdout }}</pre>
+                    </ul>
+                </td>
+                
+            </tr>
         </table>
     </div>
 </div>
@@ -94,7 +130,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Add Host</h3>
             </div>
@@ -174,7 +210,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
                 Rackspace Cloud
@@ -231,14 +267,16 @@
                       
                   </div>
                 </div>
-            </div>
+                
+                
+            </div><!-- body -->
         </div>
     </div>
 </div>
 
 <div class="row">
      <div class="col-sm-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">
                 Inventory
@@ -295,7 +333,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Jobs<button class="btn btn-xs btn-danger pull-right" ng-click="clearTasks()">Clear Buffer</button></h3>
             </div>

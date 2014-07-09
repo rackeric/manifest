@@ -1,13 +1,13 @@
 <div class="page-header"><h2>Projects Overview</h2></div>
 
 <div class="row">
-    <div class="col-md-7">
-        <div class="panel panel-primary">
+    <div class="col-md-6">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Add Project</h3>
             </div>
             <div class="panel-body">
-                <form class="form-inline">
+              <form class="form-inline">
                   <div class="form-group">
                       <input type="text" class="form-control" placeholder="New Project Name" ng-model="newProjectName">
                       <input type="text" class="form-control" placeholder="Description" ng-model="newProjectDescription">
@@ -18,13 +18,25 @@
                       </select>
                       <button class="btn btn-primary btn" type="submit" ng-click="addProject()">Add</button>
                   </div>
-                </form>
+              
             </div>
         </div>
     </div>
+    
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Description / Notes</h3>
+            </div>
+            <div class="panel-body">
+                <textarea class="form-control" rows="1" ng-model="description">{{ description }}</textarea>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">Projects
       <small><font color="black"><input type="text" class="input-xs pull-right" ng-model="searchText" placeholder="Search" /></font></small></div>

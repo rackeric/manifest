@@ -51,6 +51,12 @@ angular.module('myApp.routes', ['ngRoute'])
           controller: 'AnsibleRoleDetailsCtrl',
           label: 'Playbook'
       });
+      $routeProvider.when('/projects/Ansible/:projectId/rolesmanual/:roleId', {
+          authRequired: true,
+          templateUrl: 'partials/ansible-rolemanual-details.html',
+          controller: 'AnsibleRoleManualDetailsCtrl',
+          label: 'Manual Playbook'
+      });
       //  END ANSIBLE SECTION
       
       //  START SALT SECTION

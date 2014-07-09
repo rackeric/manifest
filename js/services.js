@@ -68,6 +68,20 @@
           }
       }])
       
+      .service('serviceRoleManual', ["$rootScope", "$firebase", function($rootScope, $firebase) {
+          return function(projectID, roleID) {
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/rolesmanual/" + roleID);
+              return $firebase(ref);
+          }
+      }])
+      
+      .service('serviceRolesManual', ["$rootScope", "$firebase", function($rootScope, $firebase) {
+          return function(projectID, roleID) {
+              var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/rolesmanual/");
+              return $firebase(ref);
+          }
+      }])
+      
       .service('serviceRoleModules', ["$rootScope", "$firebase", function($rootScope, $firebase) {
           return function(projectID, roleID) {
               var ref = new Firebase("https://deploynebula.firebaseio.com/users/" + $rootScope.auth.user.uid + "/projects/"  + projectID + "/roles/" + roleID + "/modules/");
